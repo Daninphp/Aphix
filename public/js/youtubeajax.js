@@ -15,7 +15,10 @@ jQuery(document).ready(function () {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
             }
         });
-        var keyword = jQuery('#keyword2').val();
+
+        var originalString = jQuery('#keyword2').val();
+        var keyword = originalString.replace(/(<([^>]+)>)/gi, "");
+
         if (keyword.length >= 4) {
             jQuery.ajax({
                 url: 'youtube/' + keyword,

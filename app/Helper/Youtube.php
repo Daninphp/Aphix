@@ -2,8 +2,6 @@
 
 namespace App\Helper;
 
-use function GuzzleHttp\Psr7\str;
-
 class Youtube
 {
     public function emptyResponse()
@@ -24,16 +22,20 @@ class Youtube
         echo json_encode($message);
     }
 
+    private function replaceNonHtml($string)
+    {
+        return preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $string);
+    }
+
     public function getHtmlResponse($data)
     {
         try {
-            if (!empty($data)) {
+            if (!empty($data->items)) {
                 $html = '';
-                $replaceElements = ["'","\""];
                 foreach ($data->items as $key => $item) {
-                    $videoId = $item->id->videoId;
-                    $title = str_replace($replaceElements,"", $item->snippet->title);
-                    $description = str_replace($replaceElements,"", $item->snippet->description);
+                    $videoId =  $item->id->videoId;
+                    $title = $this->replaceNonHtml($item->snippet->title);
+                    $description = $this->replaceNonHtml($item->snippet->description);
                     $html .= '
                     <div  class="videoDiv">
                         <iframe id="iframe" style="width:50%;height:300px" src="//www.youtube.com/embed/' . $videoId . '"

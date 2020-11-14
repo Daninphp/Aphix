@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Helper\Youtube;
 
 class YoutubeController extends Controller
 {
@@ -11,7 +10,7 @@ class YoutubeController extends Controller
     const MAX_RESULTS = 2;
 
     private $helper;
-    private $retriveHtmlResponse = false;
+    private $retriveResponseAsHtml = false;
 
     public function __construct(
         \App\Helper\Youtube $helper
@@ -67,7 +66,7 @@ class YoutubeController extends Controller
         }
 
         if(!empty($data->items)){
-            if($this->retriveHtmlResponse){
+            if($this->retriveResponseAsHtml){
                 $this->helper->getHtmlResponse($data);
             } else {
                 echo json_encode($data);
