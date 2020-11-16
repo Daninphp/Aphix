@@ -1,6 +1,6 @@
-.search {
+.search,.videoDesc {
     margin-bottom: 20px;
 }
-.videoDesc{
-    margin-bottom: 15px;
+.videoTitle, .videoDesc {
+    width:50%;
 }

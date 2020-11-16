@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
                     data.items.forEach(function (single) {
                         jQuery('.videoDiv').append('<iframe style="width:50%;height:300px" src="//www.youtube.com/embed/' + single.id.videoId + '" data-autoplay-src="//www.youtube.com/embed/' + single.id.videoId + '"></iframe>')
                         jQuery('.videoDiv').append('<div class="videoTitle"><b>' + single.snippet.title + '</b></div>')
-                        jQuery('.videoDiv').append('<div class="videoDesc"><b>' + single.snippet.description + '</b></div>')
+                        jQuery('.videoDiv').append('<div class="videoDesc">' + single.snippet.description + '</div>')
                     })
                 } else {
                     jQuery('.videoDiv').empty();
